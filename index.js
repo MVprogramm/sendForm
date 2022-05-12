@@ -1,17 +1,20 @@
 const form = document.querySelector(".login-form");
 const register = document.querySelector(".submit-button");
 
-const formHandler = (event) => {
+const formHandler = () => {
   if (document.querySelector(".login-form").reportValidity()) {
     register.removeAttribute("disabled");
   } else {
-    register.setAttribute("disabled", "");
+    register.setAttribute("disabled", "true");
   }
 };
+
 form.addEventListener("change", formHandler);
 
 const registerHandler = (event) => {
   event.preventDefault();
+
+  const userData = Object.fromEntries(new FormData(form));
 
   const message = fetch(
     "https://6275fcfd15458100a6a9c207.mockapi.io/api/v1/form",
@@ -20,18 +23,12 @@ const registerHandler = (event) => {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
-      body: JSON.stringify({
-        email: document.querySelector("#email").value,
-        username: document.querySelector("#name").value,
-        password: document.querySelector("#password").value,
-      }),
+      body: JSON.stringify(userData),
     }
   );
 
-  register.setAttribute("disabled", "");
-  document.querySelector("#email").value = "";
-  document.querySelector("#name").value = "";
-  document.querySelector("#password").value = "";
+  register.setAttribute("disabled", "true");
+  form.reset();
 
   message.then((res) => res.json()).then((res) => alert(JSON.stringify(res)));
 };
