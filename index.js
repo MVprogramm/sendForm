@@ -27,7 +27,7 @@ const registerHandler = (event) => {
     }
   );
 
-  register.setAttribute("disabled", "true");
+  register.setAttribute("disabled", true);
   form.reset();
 
   message.then((res) => res.json()).then((res) => alert(JSON.stringify(res)));
