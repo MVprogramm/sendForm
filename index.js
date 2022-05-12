@@ -5,7 +5,7 @@ const formHandler = () => {
   if (document.querySelector(".login-form").reportValidity()) {
     register.removeAttribute("disabled");
   } else {
-    register.setAttribute("disabled", "true");
+    register.setAttribute("disabled", true);
   }
 };
 
