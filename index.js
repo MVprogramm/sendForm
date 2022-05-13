@@ -9,7 +9,7 @@ const formHandler = () => {
   }
 };
 
-form.addEventListener("change", formHandler);
+form.addEventListener("input", formHandler);
 
 const registerHandler = (event) => {
   event.preventDefault();
