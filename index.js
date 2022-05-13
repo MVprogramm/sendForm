@@ -16,18 +16,15 @@ const registerHandler = (event) => {
 
   const userData = Object.fromEntries(new FormData(form));
 
-  const message = fetch(
-    "https://6275fcfd15458100a6a9c207.mockapi.io/api/v1/form",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(userData),
-    }
-  );
-
-  message.then((res) => res.json()).then((res) => alert(JSON.stringify(res)));
+  fetch("https://6275fcfd15458100a6a9c207.mockapi.io/api/v1/form", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify(userData),
+  })
+    .then((res) => res.json())
+    .then((res) => alert(JSON.stringify(res)));
 
   register.setAttribute("disabled", true);
   form.reset();
