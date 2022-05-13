@@ -24,9 +24,11 @@ const registerHandler = (event) => {
     body: JSON.stringify(userData),
   })
     .then((res) => res.json())
-    .then((res) => alert(JSON.stringify(res)));
+    .then((res) => {
+      register.setAttribute("disabled", true);
+      form.reset();
 
-  register.setAttribute("disabled", true);
-  form.reset();
+      alert(JSON.stringify(res));
+    });
 };
 register.addEventListener("click", registerHandler);
